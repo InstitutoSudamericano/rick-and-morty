@@ -1,1 +1,4 @@
-export class CreateCharacterDto {}
+export class CreateCharacterDto {
+  name: string;
+  species: string;
+}
