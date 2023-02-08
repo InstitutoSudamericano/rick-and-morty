@@ -11,21 +11,8 @@ export class EpisodesService {
     return this.prisma.episode.create({ data: createEpisodeDto });
   }
 
-  async findAll() {
-    type Episode = {
-      name: string;
-      episode: number;
-    };
-
-    const episodes: Episode[] = await this.prisma.episode.findMany();
-    const list = [];
-    for (let i = 0; i < episodes.length; i++) {
-      if (episodes[i].episode > 25) {
-        list.push(episodes[i]);
-      }
-    }
-
-    return list;
+  findAll() {
+    return this.prisma.episode.findMany();
   }
 
   findOne(id: number) {
@@ -40,6 +27,6 @@ export class EpisodesService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} episode`;
+    return this.prisma.episode.delete({ where: { id } });
   }
 }
